@@ -42,7 +42,9 @@
                     </section>
                     <!-- add buttons -->
                     <section>
-                        <button class="btn btn-sm btn-primary">add new client</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addClientModal">
+                            add new client
+                        </button>
                     </section>
                 </div>
                 <!-- TABLE AND DEPENDENCIES -->
@@ -80,9 +82,58 @@
                             <span class="sr-only">Loading...</span>
                         </div>
                     </div>	
-                </div>            	
+                </div> 
+
             </div>
-        </section>        
+        </section>  
+        <!-- modals       -->
+        <!-- add expenses -->
+        <section>                                                
+            <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">add client</h5>
+                    <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addExpenseForm">
+                    <div class="modal-body">                    
+                            <div class="p-3 d-flex justify-content-between">
+                                <label>name</label>
+                                <input type="text" class="col-8 form-control" v-model="name" >
+                            </div>    
+                            <div class="p-3 d-flex justify-content-between">
+                                <label>address</label>
+                                <input type="text" class="col-8 form-control" v-model="address">
+                            </div>  
+                            <div class="p-3 d-flex justify-content-between">
+                                <label>bank</label>
+                                <input type="text" class="col-8 form-control" v-model="bank">
+                            </div>                
+                            <div class="p-3 d-flex justify-content-between">
+                                <label>phone</label>
+                                <input type="text" class="col-8 form-control" v-model="phone">
+                            </div> 
+                            <div class="p-3 d-flex justify-content-between">
+                                <label>available funds</label>
+                                <input type="number" class="col-8 form-control" v-model="available_funds">
+                            </div>                                                                                                            
+                    </div>
+                    <div class="modal-footer border-0">                            
+                        <button type="button" id="closeAddClientModalButton" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-sm btn-primary"
+                            @click="addClient()">                                                        
+                            add client
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="adding_client"></span>
+                        </button>
+                    </div>
+                </form>                
+                </div>
+            </div>
+            </div>
+        </section>
     </div>
 </template>
 <script>
@@ -95,6 +146,13 @@ export default {
         return{
             search:null,
             clients:null,
+            //add client:
+            adding_client: false,
+            name:null,
+            address:null,
+            phone: null,
+            bank: null,
+            available_funds:null
         }
     },
     mounted(){
@@ -118,6 +176,31 @@ export default {
                 this.$emit('alert',err)
             })
         },                
-        }
+        //add client:
+        addClient: function(){   
+            this.adding_client = true
+            this.$http({
+                method:'post',
+                url: this.$API_BASE_URL + `/api/clients/`,
+                headers:{
+                    Authorization: this.$store.getters.access_token
+                },
+                data:{
+                    name: this.name,
+                    address : this.address,
+                    bank: this.bank,
+                    phone: this.phone,
+                    available_funds: this.available_funds,
+                }
+            }).then(()=>{
+                this.adding_client = false
+                document.getElementById('closeAddClientModalButton').click()
+                this.getClients()
+            }).catch((err)=>{
+                alert(err)
+            })
+        },
+
+    }
 }
 </script>

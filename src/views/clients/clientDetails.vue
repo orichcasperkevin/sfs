@@ -42,7 +42,9 @@
                     </section>
                     <!-- add buttons -->
                     <section>
-                        <button class="btn btn-primary">add new campaign</button>
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addClientModal">
+                            add new campaign
+                        </button>
                     </section>
                 </div>
                 <!-- TABLE AND DEPENDENCIES -->
@@ -84,7 +86,60 @@
                     </div>	
                 </div>            	
             </div>
-        </section>        
+        </section>  
+
+        <!-- modals       -->
+        <!-- add expenses -->
+        <section>                                                
+                <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">add campaign</h5>
+                        <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="addExpenseForm">
+                        <div class="modal-body">                    
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>name</label>
+                                    <input type="text" class="col-8 form-control" v-model="name" >
+                                </div>    
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>start date</label>
+                                    <input type="datetime-local" class="col-8 form-control" v-model="start_date">
+                                </div>  
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>end date</label>
+                                    <input type="datetime-local" class="col-8 form-control" v-model="end_date">
+                                </div>
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>slots</label>
+                                    <input type="number" class="col-8 form-control" v-model="slots">
+                                </div>                
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>frequency</label>
+                                    <input type="number" class="col-8 form-control" v-model="frequency">
+                                </div> 
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>running days</label>
+                                    <input type="text" placeholder="eg. Mon,Tue,Wed,Thu,Fri" class="col-8 form-control" v-model="running_days">
+                                </div>                                                                                                            
+                        </div>
+                        <div class="modal-footer border-0">                            
+                            <button type="button" id="closeAddCampaignModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-sm btn-primary"
+                                @click="addCampaign()">                                                        
+                                add campaign
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="adding_campaign"></span>
+                            </button>
+                        </div>
+                    </form>                
+                    </div>
+                </div>
+                </div>
+        </section>     
     </div>
 </template>
 <script>
@@ -100,6 +155,14 @@ export default {
             search:null,
             details:null,
             campaigns: [],
+            //add campaign.
+            adding_campaign:false,
+            name:null,
+            start_date:null,
+            end_date:null,
+            slots:null,
+            frequency:null,
+            running_days:null
         }
     },
     mounted(){
@@ -122,7 +185,33 @@ export default {
             }).catch((err)=>{
                 alert(err)
             })
-        },                
+        },        
+        //add campaign
+        addCampaign: function(){
+            this.adding_campaign = true
+            this.$http({
+                method:'post',
+                url: this.$API_BASE_URL + `/api/campaigns/`,
+                headers:{
+                    Authorization: this.$store.getters.access_token
+                },            
+                data:{
+                    client : this.client_id,
+                    "name" : this.name,
+                    "start_date" : this.start_date,
+                    "end_date" : this.end_date,
+                    "slots" : this.slots,
+                    "frequency": this.frequency,
+                    "running_days": this.running_days,
+                }       
+            }).then(()=>{
+                this.adding_campaign = false
+                document.getElementById('closeAddCampaignModal').click()
+                this.getClientDetails()
+            }).catch((err)=>{
+                alert(err)
+            })
+        },         
         }
 }
 </script>
