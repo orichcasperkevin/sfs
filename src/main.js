@@ -12,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 Vue.prototype.$http = axios
 // http://172.104.129.123
-Vue.prototype.$API_BASE_URL =  'http://172.104.129.123'
+Vue.prototype.$API_BASE_URL =  'http://172.104.129.123:8000'
 
 Vue.config.productionTip = false
 
