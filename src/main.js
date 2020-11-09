@@ -13,6 +13,7 @@ import axios from 'axios'
 Vue.prototype.$http = axios
 // http://172.104.129.123
 Vue.prototype.$API_BASE_URL =  'http://172.104.129.123:8000'
+console.log(Vue.prototype.$API_BASE_URL)
 
 Vue.config.productionTip = false
 
