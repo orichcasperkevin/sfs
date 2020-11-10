@@ -49,6 +49,34 @@
                 </div>
                 <!-- TABLE AND DEPENDENCIES -->
                 <div class="rounded shadow border border-light p-2 bg-white">
+                    <!-- summary -->
+                    <div class="p-3 d-flex justify-content-start">
+                        <div class="p-3 card rounded" style="min-width: 200px">
+                            <div>                                                               
+                                <h5 class="text-muted">campaigns</h5>
+                                <h5>{{details.campaigns_count | intcomma}}</h5>                                
+                            </div>                          
+                        </div>
+                        <div class="ml-3 p-3 card rounded" style="min-width: 200px">
+                            <div>                                                               
+                                <h5 class="text-muted">Estimated cost</h5>
+                                <h5>{{details.estimated_cost | intcomma}}</h5>                                
+                            </div>                          
+                        </div>
+                        <div class="ml-3 p-3 card rounded" style="min-width: 200px">
+                            <div class="d-flex flex-column">                                                                                                                               
+                                <h5 class="text-muted">Available funds</h5>
+                                <h5>{{details.available_funds | intcomma}}</h5>                                
+                                <small>funds : {{details.funds | intcomma}}</small>
+                                <small>
+                                    used: {{details.used_funds | intcomma}}
+                                </small>
+                                <small class="d-flex justify-content-end float-right">
+                                    <button class="p-1 btn btn-sm btn-outline-primary">add funds</button>
+                                </small>
+                            </div>                          
+                        </div>
+                    </div>
                     <table class="table table-borderless" id="expensesTable">
                         <thead >
                             <tr>

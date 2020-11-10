@@ -53,6 +53,43 @@
                     </div>
                     <!-- TABLE AND DEPENDENCIES -->
                     <div class="rounded shadow border border-light p-2 bg-white">
+                        <div class="p-3 d-flex justify-content-start">
+                            <div class="p-3 card rounded" style="min-width: 200px">
+                                <div>                                                               
+                                    <h5 class="text-muted">Status</h5>                                    
+                                    <span v-if="details.is_running" class="badge badge-success">running</span>
+                                    <span v-else class="badge badge-danger">paused</span>
+                                    <small v-if="details.is_running" class="d-flex justify-content-end">
+                                        <button class="p-1 btn btn-sm btn-outline-primary">pause</button>
+                                    </small>
+                                    <small v-else class="d-flex justify-content-end">
+                                        <button class="p-1 btn btn-sm btn-outline-primary">start</button>
+                                    </small>                              
+                                </div>                         
+                            </div>
+                            <div class="ml-2 p-3 card rounded" style="min-width: 200px">
+                                <div>                                                               
+                                    <h5 class="text-muted">Slots</h5>
+                                    <h5>{{details.slots | intcomma}}</h5>                                
+                                </div>                         
+                            </div>
+                            <div class="ml-2 p-3 card rounded" style="min-width: 200px">
+                                <div>                                                               
+                                    <h5 class="text-muted">Frequency</h5>
+                                    <h5>every {{details.slots}} minutes</h5>                                
+                                </div>                         
+                            </div>
+                            <div class="ml-2 p-3 card rounded" style="min-width: 200px">
+                                <div>                                                               
+                                    <h5 class="text-muted">Progress</h5>
+                                    <div class="progress" style="height: 5px">
+                                        <div class="progress-bar" role="progressbar" :style="`width: ${details.campaign_progress.percentage_done}%`" aria-valuenow="75%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>                             
+                                    <h5>{{details.campaign_progress.percentage_done}} % done</h5>
+                                    <small>{{details.campaign_progress.remaining_days}} days remaining</small>
+                                </div>                         
+                            </div>
+                        </div>
                         <table class="table table-borderless" id="expensesTable">
                             <thead >
                                 <tr>
@@ -95,29 +132,29 @@
             <!-- modals       -->
             <!-- add expenses -->
             <section>              
-                    <div class="modal fade" id="viewAdvertisementModal" tabindex="-1" role="dialog" >                        
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header border-0">                                    
-                                    <h5 class="modal-title" id="exampleModalCenterTitle" v-if="ad">{{ad.name}}</h5>
-                                    <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form id="addExpenseForm">                                    
-                                    <small class="p-2">{{video_source}}</small>
-                                    <div class="modal-body">                    
-                                        <video id="videoWrapper" class="" style="border-radius: 15px; width: 100%; height: 100%;" controls>
-                                                <source id="videoSource" :key="video_source" :src="video_source" ref="video" />
-                                        </video>                          
-                                    </div>
-                                    <div class="modal-footer border-0">                            
-                                        <button type="button" id="closeAddAdvertisementModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>                                        
-                                    </div>
-                                </form>                
-                                </div>
+                <div class="modal fade" id="viewAdvertisementModal" tabindex="-1" role="dialog" >                        
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header border-0">                                    
+                            <h5 class="modal-title" id="exampleModalCenterTitle" v-if="ad">{{ad.name}}</h5>
+                            <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="addExpenseForm">                                    
+                            <small class="p-2">{{video_source}}</small>
+                            <div class="modal-body">                    
+                                <video id="videoWrapper" class="" style="border-radius: 15px; width: 100%; height: 100%;" controls>
+                                        <source id="videoSource" :key="video_source" :src="video_source" ref="video" />
+                                </video>                          
                             </div>
-                            </div>                                  
+                            <div class="modal-footer border-0">                            
+                                <button type="button" id="closeAddAdvertisementModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>                                        
+                            </div>
+                        </form>                
+                        </div>
+                    </div>
+                </div>                                  
                 <!-- view video -->                
                 <div class="modal fade" id="addAdvertisementModal" tabindex="-1" role="dialog" >
                 <div class="modal-dialog modal-dialog-centered" role="document">
