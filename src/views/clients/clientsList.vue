@@ -1,13 +1,13 @@
 <template>
     <div class="ml-4">
         <div class="d-flex">
-                <h3 class="mb-4">
-                    <i class="mr-2  fa fa-id-card-o" aria-hidden="true"></i>
-                    clients
-                </h3>
-                <span class="p-3 font-weight-bold" v-if="clients">
-                    <small>{{clients.length}} total</small>
-                </span>
+            <h3 class="mb-4">
+                <i class="mr-2  fa fa-id-card-o" aria-hidden="true"></i>
+                clients
+            </h3>
+            <span class="p-3 font-weight-bold" v-if="clients">
+                <small>{{clients.length}} total</small>
+            </span>
         </div>
         <!-- list clients -->
         <section>
@@ -25,12 +25,11 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                filter	
                             </a>
-                            
                             <div class="dropdown-menu btn-sm shadow p-3" aria-labelledby="dropdownMenuLink" style="min-width: 25vw">
-                                    <div class="form-group d-flex justify-content-between">
-                                        <label class="p-2">Search</label>
-                                        <input type="text" class="col-8 form-control" v-model="search"> 
-                                    </div>                                                                                                       
+                                <div class="form-group d-flex justify-content-between">
+                                    <label class="p-2">Search</label>
+                                    <input type="text" class="col-8 form-control" v-model="search"> 
+                                </div>                                                                                                       
                             </div>
                         </div>
                         <div class="ml-2">
@@ -83,7 +82,6 @@
                         </div>
                     </div>	
                 </div> 
-
             </div>
         </section>  
         <!-- modals       -->

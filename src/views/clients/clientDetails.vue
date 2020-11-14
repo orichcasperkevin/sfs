@@ -177,33 +177,33 @@
             </div>
             <!-- edit client -->
             <div class="modal fade" id="addFundsModal" tabindex="-1" role="dialog" >
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header border-0">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">add funds</h5>
-                            <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">add funds</h5>
+                        <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="addExpenseForm">
+                        <div class="modal-body">                    
+                                <div class="p-3 d-flex justify-content-between">
+                                    <label>amount</label>
+                                    <input type="number" class="col-8 form-control" v-model="amount">
+                                </div>                                                                                                            
+                        </div>
+                        <div class="modal-footer border-0">                            
+                            <button type="button" id="closeAddFundsModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-sm btn-primary"
+                                @click="editClientDetails('add_funds')">                                                        
+                                save changes
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="editing_client"></span>
                             </button>
                         </div>
-                        <form id="addExpenseForm">
-                            <div class="modal-body">                    
-                                    <div class="p-3 d-flex justify-content-between">
-                                        <label>amount</label>
-                                        <input type="number" class="col-8 form-control" v-model="amount">
-                                    </div>                                                                                                            
-                            </div>
-                            <div class="modal-footer border-0">                            
-                                <button type="button" id="closeAddFundsModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
-                                <button class="btn btn-sm btn-primary"
-                                    @click="editClientDetails('add_funds')">                                                        
-                                    save changes
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="editing_client"></span>
-                                </button>
-                            </div>
-                        </form>                
-                        </div>
+                    </form>                
                     </div>
                 </div>
+            </div>
             <!-- add campaign -->
             <div class="modal fade" id="addClientModal" tabindex="-1" role="dialog" >
                 <div class="modal-dialog modal-dialog-centered" role="document">
