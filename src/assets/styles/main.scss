@@ -19,12 +19,12 @@ $faded: #f7f7f7;
     font-size: inherit;
     transition: 0.1s ease-in-out; /* 0.5 second transition effect to slide in the sidenav */ 
 }
-.nav-item{    
-    padding: 7px;    
+.nav-item{
+    padding: 7px;
     cursor: pointer
 }
 .nav-item:hover{
-    color: $primary    
+    color: $primary
 }
 .main-app{    
     margin-left: 265px;

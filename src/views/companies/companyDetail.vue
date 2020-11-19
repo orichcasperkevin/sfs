@@ -90,8 +90,13 @@
                                 </tr>
                             </thead>                    
                             <tbody v-if="details && shops.length">
-                                <tr v-for="(shop,index) in shops" :key="index">                                
-                                    <td>{{shop.name}} </td> 
+                                <tr v-for="(shop,index) in shops" :key="index">                                                                
+                                    <td>
+                                        <router-link 
+                                            :to="{ name: 'shopDetail', params:{ id : shop.id}, query: { shop_name : shop.name ,company_id: company_id, company_name:company_name  }}">
+                                            {{shop.name}}
+                                        </router-link>
+                                    </td>
                                     <td class="text-secondary">{{shop.address}}</td>
                                     <td class="text-secondary">{{shop.screens}}</td>                              
                                     <td class="text-muted">{{shop.open_at}}</td>

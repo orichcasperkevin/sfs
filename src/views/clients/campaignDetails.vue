@@ -115,11 +115,10 @@
                             <tbody v-if="details && ads.length">
                                 <tr v-for="(ad,index) in ads" :key="index">                                
                                     <td>                                    
-                                        <a class="text-primary cursor-pointer" style="cursor: pointer" data-toggle="modal" 
-                                            data-target="#viewAdvertisementModal" @click="changeVideo(ad)">
-                                            <i class="fa fa-play" aria-hidden="true"></i>
+                                        <router-link 
+                                            :to="{ name: 'adDetail', query: { ad: ad, campaign_id: campaign_id ,campaign_name : campaign_name ,client_id : details.client, client_name:client_name  }}">
                                             {{ad.name}}
-                                        </a>
+                                        </router-link>
                                     </td>                               
                                     <td class="text-muted">{{ad.slots | intcomma}}</td>
                                     <td class="text-muted">{{ad.required_displays | intcomma}}</td>
@@ -217,7 +216,7 @@
                                             <input type="text" class="col-8 form-control" v-model="ad.name" >
                                         </div>                          
                                         <video id="videoWrapper" class="" style="border-radius: 15px; width: 100%; height: 100%;" controls>
-                                                <source id="videoSource" :key="video_source" :src="video_source" ref="video" />
+                                                <source id="videoSource" :key="ad.id" :src="video_source" ref="video" />
                                         </video>     
                                         <div class="p-3 d-flex justify-content-between">
                                             <label>file</label>
@@ -270,7 +269,7 @@
                         <div class="modal-header border-0">
                             <h5 class="modal-title" id="exampleModalCenterTitle">add advertisement</h5>
                             <button type="button" id="closeAddExpenseModal" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true" @click="video_source = null">&times;</span>
                             </button>
                         </div>
                         <form id="addExpenseForm">
@@ -307,7 +306,7 @@
                                 </div>                             
                             </div>
                             <div class="modal-footer border-0">                            
-                                <button type="button" id="closeAddAdvertisementModal" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="closeAddAdvertisementModal" @click="video_source = null" class="btn btn-sm  btn-secondary" data-dismiss="modal">Close</button>
                                 <button class="btn btn-sm btn-primary"
                                     @click="addAdvertisement()">                                                        
                                     add ad
@@ -403,12 +402,14 @@
                     alert(err)
                 })
             }, 
-            changeVideo(ad){         
+            changeVideo(ad){                         
                 this.ad = ad       
                 this.video_source = ad.file
                 //Force video load.
-                var vid = this.$refs.video                
-                vid.load();
+                var vid = this.$refs.video    
+                setTimeout(()=>{
+                    vid.load()
+                },200)                           
             },
             //add advertisement            
             addAdvertisement: function(){   

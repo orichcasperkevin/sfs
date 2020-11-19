@@ -44,6 +44,11 @@
 					<i class="mr-2  fa fa-list-ol" aria-hidden="true"></i>
 					logs
 				</li>
+				<li class="nav-item" :class="{ 'text-primary' : current_route_group == 'settings'}"
+					@click="goto('/settings')">
+					<i class="mr-2 fa fa-cog" aria-hidden="true"></i>
+					settings
+				</li>
 				<!-- spacer -->
 				<div style="height: 50px"></div>
 				<li class="nav-item" @click="logout()">
