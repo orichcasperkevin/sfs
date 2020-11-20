@@ -32,7 +32,7 @@
 				<li class="nav-item" :class="{ 'text-primary' : current_route_group == 'tablets'}"
 					@click="goto('/tablets')">
 					<i class="mr-2  fa fa-tablet" aria-hidden="true"></i>
-					tablets
+					devices
 				</li>
 				<li class="nav-item" :class="{ 'text-primary' : current_route_group == 'users'}"
 					@click="goto('/users')">

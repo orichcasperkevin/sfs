@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.46fd81d05dd9982006c144009ebb31c5.js"
+  "/precache-manifest.936f763e05ee25babcf8ca6eb5fb67f6.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "sfs-web-app"});

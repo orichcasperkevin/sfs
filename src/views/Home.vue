@@ -6,26 +6,7 @@
 				dashboard
 			</h3>			
 	</div> 
-	<div class="d-flex justify-content-between mb-5 mt-5">
-		<!-- right -->
-		<section class="d-flex">
-			<h4 class="mr-4 ">dash</h4>
-			<div class="dropdown">				
-				
-				<div class="dropdown-menu btn-sm shadow p-3" aria-labelledby="dropdownMenuLink" style="min-width: 25vw">
-						<div class="form-group d-flex justify-content-between">
-							<label class="p-2">Search</label>
-							<input type="text" class="col-8 form-control" v-model="search"> 
-						</div>                                                                                                       
-				</div>
-			</div>
-			<div class="ml-2">
-				<button class="btn btn-outline-primary btn-sm"
-					@click="location.reload()">                                                                
-					refresh
-				</button>	
-			</div>
-		</section>
+	<div class="d-flex justify-content-between mb-5 mt-5">	
 		<!-- add buttons -->                        
 	</div>
     <!-- numbers -->
@@ -93,7 +74,7 @@
 	</div>
 	
 	<!-- second row -->
-	<div class="d-flex mt-5 ">
+	<div class="d-flex mt-5">
 		<!-- displays -->
 		<div class="mr-3 d-flex justify-content-start shadow rounded bg-white" style="height:200px; width: 300px">
 				<!-- icon -->
@@ -156,6 +137,11 @@
 					</div>
 				</div>
 		</div>
+	</div>
+
+	<!-- spacer -->
+	<div class="mt-5 mb-5">
+		.
 	</div>
   </div>
 </template>

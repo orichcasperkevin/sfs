@@ -3,7 +3,7 @@
         <div class="d-flex">
                 <h3 class="mb-4">
                     <i class="mr-2  fa fa-id-card-o" aria-hidden="true"></i>
-                    tablets
+                    devices
                 </h3>
                 <span class="p-3 font-weight-bold" v-if="tablets">
                     <small>{{tablets.length}} total</small>
@@ -18,7 +18,7 @@
                 <div class="d-flex justify-content-between mb-5 mt-5">
                     <!-- right -->
                     <section class="d-flex">
-                        <h4 class="mr-4 ">tablets</h4>
+                        <h4 class="mr-4 ">devices</h4>
                         <div class="dropdown">
                             <a class="btn btn-outline-primary btn-sm dropdown-toggle" 
                                 href="#" role="button" id="dropdownMenuLink" 
@@ -42,7 +42,7 @@
                     </section>
                     <!-- add buttons -->
                     <section>
-                        <button class="btn btn-sm btn-primary">add new tablet</button>
+                        <button class="btn btn-sm btn-primary">add new device</button>
                     </section>
                 </div>
                 <!-- TABLE AND DEPENDENCIES -->
