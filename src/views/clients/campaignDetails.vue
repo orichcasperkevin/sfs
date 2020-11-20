@@ -310,7 +310,7 @@
                                 <button class="btn btn-sm btn-primary"
                                     @click="addAdvertisement()">                                                        
                                     add ad
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="adding_ad"></span>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="adding_advertisement"></span>
                                 </button>
                             </div>
                         </form>                
@@ -412,7 +412,8 @@
                 },200)                           
             },
             //add advertisement            
-            addAdvertisement: function(){   
+            addAdvertisement: function(){  
+                this.adding_advertisement = true 
                 var data = new FormData()                
                 data.append("campaign", this.campaign_id)
                 data.append("name", this.name)
@@ -421,8 +422,7 @@
                 data.append("is_running", true)
                 data.append("base_ad", this.default_ad)
                 data.append("file", this.file)             
-
-                this.adding_advertisement = true
+                
                 this.$http({
                     method:'post',
                     url: this.$API_BASE_URL + `/api/add-advertisement/`,
@@ -436,6 +436,7 @@
                     document.getElementById('closeAddAdvertisementModal').click()
                     this.getCampaignDetails()
                 }).catch((err)=>{
+                    this.adding_advertisement = false
                     alert(err)
                 })
             },    
